@@ -3,39 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>إدارة المستخدمين - شركة فينش</title>
+    <title>لوحة الإدارة</title>
     <link rel="stylesheet" href="admin_style.css">
 </head>
 <body>
-    <div class="admin-container">
-        <h1>إدارة المستخدمين</h1>
+    <!-- نموذج تسجيل الدخول -->
+    <div id="loginDiv">
+        <h2>تسجيل الدخول</h2>
+        <input type="text" id="username" placeholder="اسم المستخدم"><br>
+        <input type="password" id="password" placeholder="كلمة المرور"><br>
+        <button onclick="login()">دخول</button>
+        <p id="loginError" style="color:red;"></p>
+    </div>
 
-        <!-- نموذج إضافة مستخدم جديد -->
-        <div class="add-user-form">
-            <h2>إضافة مستخدم جديد</h2>
-            <form id="addUserForm">
-                <label for="username">اسم المستخدم</label>
-                <input type="text" id="username" required>
+    <!-- المحتوى الرئيسي بعد تسجيل الدخول -->
+    <div id="adminPanel" style="display:none;">
+        <h1>مرحبًا بك في لوحة الإدارة</h1>
+        <p id="lastLoginDisplay"></p>
 
-                <label for="password">كلمة المرور</label>
-                <input type="password" id="password" required>
-
-                <label for="locations">المواقع المسموح بها (مفصولة بفواصل)</label>
-                <input type="text" id="locations" required>
-
-                <label for="radius">المسافة المسموحة (بالمتر)</label>
-                <input type="number" id="radius" required>
-
-                <button type="submit">إضافة المستخدم</button>
-            </form>
+        <!-- زر إضافة المستخدمين -->
+        <h3>إدارة المستخدمين</h3>
+        <button onclick="showAddUserForm()">إضافة مستخدم</button>
+        <div id="addUserForm" style="display:none;">
+            <input type="text" id="newUsername" placeholder="اسم المستخدم"><br>
+            <input type="password" id="newPassword" placeholder="كلمة المرور"><br>
+            <input type="number" id="sessionDuration" placeholder="مدة الجلسة (بالدقائق)"><br>
+            <button onclick="addUser()">إضافة</button>
         </div>
 
-        <!-- قائمة المستخدمين -->
-        <div class="user-list">
-            <h2>قائمة المستخدمين</h2>
-            <ul id="userList">
-                <!-- سيتم عرض المستخدمين هنا -->
-            </ul>
+        <!-- جدول المستخدمين -->
+        <table border="1" id="userTable">
+            <thead>
+                <tr><th>اسم المستخدم</th><th>مدة الجلسة</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- زر إضافة لوكيشن -->
+        <h3>إدارة المواقع</h3>
+        <button onclick="showAddLocationForm()">إضافة موقع</button>
+        <div id="addLocationForm" style="display:none;">
+            <input type="text" id="locationName" placeholder="اسم الموقع"><br>
+            <input type="url" id="googleMapUrl" placeholder="رابط Google Map"><br>
+            <input type="number" id="radius" placeholder="المسافة (بالمتر)"><br>
+            <button onclick="addLocation()">إضافة</button>
         </div>
     </div>
 
