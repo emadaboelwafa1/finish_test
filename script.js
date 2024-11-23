@@ -51,15 +51,22 @@ function validateLogin() {
                     document.getElementById("welcomeMessage").innerText = `أهلاً بك مهندس ${username}`;
                     document.getElementById("welcomeMessage").style.display = "block";
 
+                    // عرض المواقع الخاصة بالعمل
+                    const locationMessage = document.getElementById('userLocations');
+                    locationMessage.innerHTML = `المواقع الخاصة بك للعمل: ${user.locations.join(', ')}`;
+
                     // بدء الجلسة
                     startSession(sessionDuration);
 
+                    // إخفاء نموذج الدخول
                     document.getElementById("loginForm").style.display = "none";
+
+                    // عرض نموذج العمل في iframe
                     const iframe = document.getElementById("googleForm");
                     iframe.src = "https://docs.google.com/forms/d/e/1FAIpQLSe1MF2zm5bVheW0f2gXCqZcypHe4Dr8B9fLn1q6RCkIJLRzbw/viewform";
                     document.getElementById("formContainer").style.display = "block";
                 } else {
-                    alert("لا يمكنك الوصول إلى النموذج من موقعك الحالي.");
+                    document.getElementById("locationMessage").style.display = "block"; // عرض رسالة الموقع
                 }
             },
             () => {
@@ -68,10 +75,14 @@ function validateLogin() {
         );
     } else {
         alert("اسم المستخدم أو كلمة المرور غير صحيحة.");
-        if (user) {
-            user.failedAttempts++;
-            localStorage.setItem('users', JSON.stringify(users)); // حفظ المحاولات الفاشلة
-        }
     }
     return false;
+}
+
+// دالة لتحديد مدة الجلسة
+function startSession(duration) {
+    setTimeout(function() {
+        alert("انتهت الجلسة.");
+        window.location.reload(); // إعادة تحميل الصفحة بعد انتهاء الجلسة
+    }, duration * 60 * 1000); // تحويل الدقائق إلى ميلي ثانية
 }
