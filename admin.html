@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم الإدارة</title>
-    <link rel="stylesheet" href="style.css">
+    <title>إدارة المستخدمين - شركة فينش</title>
+    <link rel="stylesheet" href="admin_style.css">
 </head>
 <body>
-    <div class="admin-panel">
-        <h1>لوحة تحكم الإدارة</h1>
-        <form id="userForm" onsubmit="addUser(); return false;">
-            <label for="username">اسم المستخدم</label>
-            <input type="text" id="username" name="username" required>
+    <div class="admin-container">
+        <h1>إدارة المستخدمين</h1>
 
-            <label for="password">كلمة المرور</label>
-            <input type="password" id="password" name="password" required>
+        <!-- نموذج إضافة مستخدم جديد -->
+        <div class="add-user-form">
+            <h2>إضافة مستخدم جديد</h2>
+            <form id="addUserForm">
+                <label for="username">اسم المستخدم</label>
+                <input type="text" id="username" required>
 
-            <label for="sessionDuration">مدة الجلسة (دقائق)</label>
-            <input type="number" id="sessionDuration" name="sessionDuration" required>
+                <label for="password">كلمة المرور</label>
+                <input type="password" id="password" required>
 
-            <label for="locations">رابط الموقع (ويمكن إضافة أكثر من موقع)</label>
-            <input type="text" id="locations" name="locations" required placeholder="مثال: https://maps.app.goo.gl/XYZ">
+                <label for="locations">المواقع المسموح بها (مفصولة بفواصل)</label>
+                <input type="text" id="locations" required>
 
-            <label for="radius">المسافة المسموح بها (متر)</label>
-            <input type="number" id="radius" name="radius" required placeholder="المسافة بالمتر">
+                <label for="radius">المسافة المسموحة (بالمتر)</label>
+                <input type="number" id="radius" required>
 
-            <button type="submit">إضافة مستخدم</button>
-        </form>
+                <button type="submit">إضافة المستخدم</button>
+            </form>
+        </div>
 
-        <h2>قائمة المستخدمين</h2>
-        <ul id="userList"></ul>
+        <!-- قائمة المستخدمين -->
+        <div class="user-list">
+            <h2>قائمة المستخدمين</h2>
+            <ul id="userList">
+                <!-- سيتم عرض المستخدمين هنا -->
+            </ul>
+        </div>
     </div>
 
     <script src="admin.js"></script>
