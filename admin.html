@@ -7,47 +7,65 @@
     <link rel="stylesheet" href="admin_style.css">
 </head>
 <body>
-    <!-- نموذج تسجيل الدخول -->
     <div id="loginDiv">
-        <h2>تسجيل الدخول</h2>
+        <h1>تسجيل الدخول</h1>
         <input type="text" id="username" placeholder="اسم المستخدم"><br>
         <input type="password" id="password" placeholder="كلمة المرور"><br>
         <button onclick="login()">دخول</button>
-        <p id="loginError" style="color:red;"></p>
+        <p id="loginError" style="color: red;"></p>
     </div>
 
-    <!-- المحتوى الرئيسي بعد تسجيل الدخول -->
     <div id="adminPanel" style="display:none;">
-        <h1>مرحبًا بك في لوحة الإدارة</h1>
-        <p id="lastLoginDisplay"></p>
+        <h2>إدارة المستخدمين والمواقع</h2>
 
-        <!-- زر إضافة المستخدمين -->
-        <h3>إدارة المستخدمين</h3>
+        <!-- زر إضافة مستخدم -->
         <button onclick="showAddUserForm()">إضافة مستخدم</button>
         <div id="addUserForm" style="display:none;">
             <input type="text" id="newUsername" placeholder="اسم المستخدم"><br>
             <input type="password" id="newPassword" placeholder="كلمة المرور"><br>
             <input type="number" id="sessionDuration" placeholder="مدة الجلسة (بالدقائق)"><br>
             <button onclick="addUser()">إضافة</button>
+            <button onclick="hideAddUserForm()">إغلاق</button>
         </div>
 
-        <!-- جدول المستخدمين -->
-        <table border="1" id="userTable">
-            <thead>
-                <tr><th>اسم المستخدم</th><th>مدة الجلسة</th></tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-
-        <!-- زر إضافة لوكيشن -->
-        <h3>إدارة المواقع</h3>
+        <!-- زر إضافة موقع -->
         <button onclick="showAddLocationForm()">إضافة موقع</button>
         <div id="addLocationForm" style="display:none;">
             <input type="text" id="locationName" placeholder="اسم الموقع"><br>
             <input type="url" id="googleMapUrl" placeholder="رابط Google Map"><br>
             <input type="number" id="radius" placeholder="المسافة (بالمتر)"><br>
             <button onclick="addLocation()">إضافة</button>
+            <button onclick="hideAddLocationForm()">إغلاق</button>
         </div>
+
+        <h3>قائمة المستخدمين</h3>
+        <table id="userTable">
+            <thead>
+                <tr>
+                    <th>اسم المستخدم</th>
+                    <th>مدة الجلسة</th>
+                    <th>الخيارات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- سيتم إضافة المستخدمين هنا -->
+            </tbody>
+        </table>
+
+        <h3>قائمة المواقع</h3>
+        <table id="locationTable">
+            <thead>
+                <tr>
+                    <th>اسم الموقع</th>
+                    <th>رابط Google Map</th>
+                    <th>المسافة</th>
+                    <th>الخيارات</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- سيتم إضافة المواقع هنا -->
+            </tbody>
+        </table>
     </div>
 
     <script src="admin.js"></script>
