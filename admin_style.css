@@ -1,63 +1,127 @@
 /* الأساسيات */
 body {
     font-family: Arial, sans-serif;
-    direction: rtl;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
 
-h1, h2, h3 {
+/* تنسيق عنوان الصفحة */
+h1 {
+    text-align: center;
     color: #333;
 }
 
+/* تنسيق الأزرار */
 button {
     background-color: #4CAF50;
     color: white;
-    border: none;
     padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
     cursor: pointer;
-    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 button:hover {
     background-color: #45a049;
 }
 
-input[type="text"], input[type="password"], input[type="url"], input[type="number"], select {
-    padding: 10px;
-    margin: 5px;
+/* تنسيق الحقول */
+input[type="text"], input[type="password"], input[type="number"], input[type="url"], select {
     width: 100%;
-    max-width: 300px;
-    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-table {
+/* تنسيق نموذج إضافة مستخدم */
+#addUserForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+}
+
+#addUserForm input, #addUserForm select {
+    width: 100%;
+}
+
+/* نموذج إضافة موقع */
+#addLocationForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 500px;
+}
+
+#addLocationForm input, #addLocationForm select {
+    width: 100%;
+}
+
+/* تنسيق الجداول */
+#userTable, #locationTable {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
 }
 
-th, td {
+#userTable th, #userTable td, #locationTable th, #locationTable td {
     padding: 10px;
-    text-align: center;
     border: 1px solid #ddd;
+    text-align: left;
 }
 
-/* تصميم متجاوب */
-@media only screen and (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
+#userTable th, #locationTable th {
+    background-color: #f2f2f2;
+}
 
-    h1, h2, h3 {
-        font-size: 1.2em;
-    }
+/* تنسيق الحقل المختار */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+}
 
-    table, button {
-        width: 100%;
-    }
+/* صندوق الخطأ في حالة وجود خطأ */
+#loginError {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
 
-    input[type="text"], input[type="password"], input[type="url"], input[type="number"], select {
-        width: 100%;
-    }
+/* تنسيق لزر "إضافة المستخدم" و "إضافة موقع" */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px 0;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* تخصيص تنسيق مخصص للنماذج */
+input[type="text"], input[type="password"], input[type="url"], input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
