@@ -24,6 +24,10 @@
             <input type="text" id="newUsername" placeholder="اسم المستخدم"><br>
             <input type="password" id="newPassword" placeholder="كلمة المرور"><br>
             <input type="number" id="sessionDuration" placeholder="مدة الجلسة (بالدقائق)"><br>
+            <select id="userLocation">
+                <option value="">اختر موقعًا</option>
+                <!-- سيتم إضافة المواقع هنا -->
+            </select><br>
             <button onclick="addUser()">إضافة</button>
             <button onclick="hideAddUserForm()">إغلاق</button>
         </div>
@@ -44,6 +48,7 @@
                 <tr>
                     <th>اسم المستخدم</th>
                     <th>مدة الجلسة</th>
+                    <th>الموقع</th>
                     <th>الخيارات</th>
                 </tr>
             </thead>
