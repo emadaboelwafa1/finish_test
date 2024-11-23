@@ -4,75 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>لوحة الإدارة</title>
-    <link rel="stylesheet" href="admin_style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="loginDiv">
-        <h1>تسجيل الدخول</h1>
-        <input type="text" id="username" placeholder="اسم المستخدم"><br>
-        <input type="password" id="password" placeholder="كلمة المرور"><br>
-        <button onclick="login()">دخول</button>
-        <p id="loginError" style="color: red;"></p>
+    <h1>إدارة المستخدمين</h1>
+
+    <button onclick="showAddUserForm()">إضافة مستخدم جديد</button>
+
+    <div id="addUserForm" style="display:none;">
+        <h3>إضافة مستخدم</h3>
+        <label for="newUsername">اسم المستخدم:</label>
+        <input type="text" id="newUsername" required><br>
+        
+        <label for="newPassword">كلمة المرور:</label>
+        <input type="password" id="newPassword" required><br>
+        
+        <label for="sessionDuration">مدة الجلسة (دقائق):</label>
+        <input type="number" id="sessionDuration" required><br>
+
+        <label for="userLocation">الموقع المرتبط:</label>
+        <select id="userLocation">
+            <option value="">اختر موقعًا</option>
+            <!-- سيتم إضافة المواقع هنا عبر JavaScript -->
+        </select><br>
+
+        <button onclick="addUser()">إضافة</button>
+        <button onclick="hideAddUserForm()">إغلاق</button>
     </div>
 
-    <div id="adminPanel" style="display:none;">
-        <h2>إدارة المستخدمين والمواقع</h2>
+    <h2>قائمة المستخدمين</h2>
+    <table border="1" id="userTable">
+        <thead>
+            <tr>
+                <th>اسم المستخدم</th>
+                <th>الموقع المرتبط</th>
+                <th>مدة الجلسة</th>
+                <th>إجراءات</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- سيتم إضافة المستخدمين هنا عبر JavaScript -->
+        </tbody>
+    </table>
 
-        <!-- زر إضافة مستخدم -->
-        <button onclick="showAddUserForm()">إضافة مستخدم</button>
-        <div id="addUserForm" style="display:none;">
-            <input type="text" id="newUsername" placeholder="اسم المستخدم"><br>
-            <input type="password" id="newPassword" placeholder="كلمة المرور"><br>
-            <input type="number" id="sessionDuration" placeholder="مدة الجلسة (بالدقائق)"><br>
-            <select id="userLocation">
-                <option value="">اختر موقعًا</option>
-                <!-- سيتم إضافة المواقع هنا -->
-            </select><br>
-            <button onclick="addUser()">إضافة</button>
-            <button onclick="hideAddUserForm()">إغلاق</button>
-        </div>
-
-        <!-- زر إضافة موقع -->
-        <button onclick="showAddLocationForm()">إضافة موقع</button>
-        <div id="addLocationForm" style="display:none;">
-            <input type="text" id="locationName" placeholder="اسم الموقع"><br>
-            <input type="url" id="googleMapUrl" placeholder="رابط Google Map"><br>
-            <input type="number" id="radius" placeholder="المسافة (بالمتر)"><br>
-            <button onclick="addLocation()">إضافة</button>
-            <button onclick="hideAddLocationForm()">إغلاق</button>
-        </div>
-
-        <h3>قائمة المستخدمين</h3>
-        <table id="userTable">
-            <thead>
-                <tr>
-                    <th>اسم المستخدم</th>
-                    <th>مدة الجلسة</th>
-                    <th>الموقع</th>
-                    <th>الخيارات</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- سيتم إضافة المستخدمين هنا -->
-            </tbody>
-        </table>
-
-        <h3>قائمة المواقع</h3>
-        <table id="locationTable">
-            <thead>
-                <tr>
-                    <th>اسم الموقع</th>
-                    <th>رابط Google Map</th>
-                    <th>المسافة</th>
-                    <th>الخيارات</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- سيتم إضافة المواقع هنا -->
-            </tbody>
-        </table>
-    </div>
-
-    <script src="admin.js"></script>
+    <script src="admin.js"></script> <!-- رابط إلى السكربت الخاص بالإدارة -->
 </body>
 </html>
