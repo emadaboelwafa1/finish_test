@@ -7,6 +7,9 @@ const users = [
 function login() {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
+
+    console.log(`اسم المستخدم: ${username}, كلمة المرور: ${password}`);  // طباعة المدخلات في الـ Console
+
     const user = users.find(u => u.username === username && u.password === password);
 
     if (user) {
@@ -17,33 +20,4 @@ function login() {
     } else {
         document.getElementById("loginError").innerText = "خطأ في اسم المستخدم أو كلمة المرور!";
     }
-}
-
-// عرض نموذج إضافة المستخدم
-function showAddUserForm() {
-    document.getElementById("addUserForm").style.display = "block";
-}
-
-// إضافة مستخدم جديد إلى الجدول
-function addUser() {
-    const username = document.getElementById("newUsername").value;
-    const sessionDuration = document.getElementById("sessionDuration").value;
-
-    const table = document.getElementById("userTable").getElementsByTagName('tbody')[0];
-    const newRow = table.insertRow();
-    newRow.innerHTML = `<td>${username}</td><td>${sessionDuration} دقائق</td>`;
-}
-
-// عرض نموذج إضافة الموقع
-function showAddLocationForm() {
-    document.getElementById("addLocationForm").style.display = "block";
-}
-
-// إضافة موقع جديد
-function addLocation() {
-    const locationName = document.getElementById("locationName").value;
-    const googleMapUrl = document.getElementById("googleMapUrl").value;
-    const radius = document.getElementById("radius").value;
-
-    console.log(`الموقع: ${locationName}, الرابط: ${googleMapUrl}, المسافة: ${radius} متر`);
 }
