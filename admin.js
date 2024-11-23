@@ -1,47 +1,49 @@
-// تحميل بيانات المستخدمين من localStorage
-let users = JSON.parse(localStorage.getItem('users')) || [];
+// بيانات المستخدم المخزنة
+const users = [
+    { username: "admin", password: "1234", lastLogin: "" }
+];
 
-// دالة لإضافة مستخدم جديد
-function addUser(username, password, locations, radius) {
-    const newUser = {
-        username: username,
-        password: password,
-        locations: locations.split(',').map(location => location.trim()), // تحويل المواقع إلى مصفوفة
-        radius: parseInt(radius),
-        sessionDuration: 5 // مدة الجلسة يمكن تحديدها لاحقًا حسب الحاجة
-    };
+// تسجيل الدخول
+function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const user = users.find(u => u.username === username && u.password === password);
 
-    users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users)); // حفظ البيانات في localStorage
-    renderUserList(); // تحديث قائمة المستخدمين
+    if (user) {
+        user.lastLogin = new Date().toLocaleString();
+        document.getElementById("lastLoginDisplay").innerText = `آخر تسجيل دخول: ${user.lastLogin}`;
+        document.getElementById("loginDiv").style.display = "none";
+        document.getElementById("adminPanel").style.display = "block";
+    } else {
+        document.getElementById("loginError").innerText = "خطأ في اسم المستخدم أو كلمة المرور!";
+    }
 }
 
-// دالة لعرض قائمة المستخدمين
-function renderUserList() {
-    const userListElement = document.getElementById('userList');
-    userListElement.innerHTML = ''; // مسح القائمة القديمة
-
-    users.forEach(user => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `اسم المستخدم: ${user.username}, المواقع: ${user.locations.join(', ')}, المسافة: ${user.radius} متر`;
-        userListElement.appendChild(listItem);
-    });
+// عرض نموذج إضافة المستخدم
+function showAddUserForm() {
+    document.getElementById("addUserForm").style.display = "block";
 }
 
-// دالة للتعامل مع نموذج إضافة مستخدم جديد
-document.getElementById('addUserForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+// إضافة مستخدم جديد إلى الجدول
+function addUser() {
+    const username = document.getElementById("newUsername").value;
+    const sessionDuration = document.getElementById("sessionDuration").value;
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const locations = document.getElementById('locations').value;
-    const radius = document.getElementById('radius').value;
+    const table = document.getElementById("userTable").getElementsByTagName('tbody')[0];
+    const newRow = table.insertRow();
+    newRow.innerHTML = `<td>${username}</td><td>${sessionDuration} دقائق</td>`;
+}
 
-    addUser(username, password, locations, radius);
+// عرض نموذج إضافة الموقع
+function showAddLocationForm() {
+    document.getElementById("addLocationForm").style.display = "block";
+}
 
-    // إعادة تعيين النموذج بعد إضافة المستخدم
-    document.getElementById('addUserForm').reset();
-});
+// إضافة موقع جديد
+function addLocation() {
+    const locationName = document.getElementById("locationName").value;
+    const googleMapUrl = document.getElementById("googleMapUrl").value;
+    const radius = document.getElementById("radius").value;
 
-// عرض قائمة المستخدمين عند تحميل الصفحة
-renderUserList();
+    console.log(`الموقع: ${locationName}, الرابط: ${googleMapUrl}, المسافة: ${radius} متر`);
+}
