@@ -1,42 +1,47 @@
-// تحميل بيانات المستخدمين من localStorage إذا كانت موجودة
+// تحميل بيانات المستخدمين من localStorage
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
 // دالة لإضافة مستخدم جديد
-function addUser() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const sessionDuration = document.getElementById('sessionDuration').value;
-    const locations = document.getElementById('locations').value.split(';');  // يمكن إضافة عدة مواقع مفصولة بـ ";"
-    const radius = document.getElementById('radius').value;
-
+function addUser(username, password, locations, radius) {
     const newUser = {
-        username,
-        password,
-        sessionDuration: parseInt(sessionDuration),
-        locations,
+        username: username,
+        password: password,
+        locations: locations.split(',').map(location => location.trim()), // تحويل المواقع إلى مصفوفة
         radius: parseInt(radius),
-        loginAttempts: 0,
-        failedAttempts: 0
+        sessionDuration: 5 // مدة الجلسة يمكن تحديدها لاحقًا حسب الحاجة
     };
 
     users.push(newUser);
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // تحديث عرض المستخدمين
-    displayUsers();
-    document.getElementById('userForm').reset();
+    localStorage.setItem('users', JSON.stringify(users)); // حفظ البيانات في localStorage
+    renderUserList(); // تحديث قائمة المستخدمين
 }
 
 // دالة لعرض قائمة المستخدمين
-function displayUsers() {
-    const userList = document.getElementById('userList');
-    userList.innerHTML = ''; // مسح القائمة الحالية
+function renderUserList() {
+    const userListElement = document.getElementById('userList');
+    userListElement.innerHTML = ''; // مسح القائمة القديمة
+
     users.forEach(user => {
         const listItem = document.createElement('li');
-        listItem.textContent = `${user.username} - مواقع العمل: ${user.locations.join(', ')} - مسافة: ${user.radius} متر - محاولات ناجحة: ${user.loginAttempts} - محاولات فاشلة: ${user.failedAttempts}`;
-        userList.appendChild(listItem);
+        listItem.textContent = `اسم المستخدم: ${user.username}, المواقع: ${user.locations.join(', ')}, المسافة: ${user.radius} متر`;
+        userListElement.appendChild(listItem);
     });
 }
 
-// عرض المستخدمين عند تحميل الصفحة
-window.onload = displayUsers;
+// دالة للتعامل مع نموذج إضافة مستخدم جديد
+document.getElementById('addUserForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const locations = document.getElementById('locations').value;
+    const radius = document.getElementById('radius').value;
+
+    addUser(username, password, locations, radius);
+
+    // إعادة تعيين النموذج بعد إضافة المستخدم
+    document.getElementById('addUserForm').reset();
+});
+
+// عرض قائمة المستخدمين عند تحميل الصفحة
+renderUserList();
