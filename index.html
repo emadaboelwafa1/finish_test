@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة فينش لمكافحة الحشرات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background">
+        <div class="content">
+            <h1>شركة فينش لمكافحة الحشرات</h1>
+            <p>صفحة تسجيل دخول مهندسي مكافحة الحشرات</p>
+
+            <div class="marquee">خدماتنا متوفرة لجميع العملاء في الإسكندرية وشبرا الخيمة</div>
+
+            <div id="locationMessage">
+                <h2>الرجاء السماح بتحديد موقعك للدخول</h2>
+            </div>
+
+            <!-- رسالة الترحيب الخاصة بالمستخدم -->
+            <div id="welcomeMessage" style="display:none; font-size: 18px; color: green; margin-top: 20px;"></div>
+
+            <!-- نموذج تسجيل الدخول -->
+            <div id="loginForm" style="display:none;">
+                <h2>تسجيل الدخول</h2>
+                <form onsubmit="return validateLogin()">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">دخول</button>
+                </form>
+            </div>
+
+            <!-- النموذج داخل iframe -->
+            <div id="formContainer" style="display:none;">
+                <iframe id="googleForm" src="" width="100%" height="600px" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

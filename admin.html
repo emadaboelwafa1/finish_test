@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم الإدارة</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="admin-panel">
+        <h1>لوحة تحكم الإدارة</h1>
+        <form id="userForm" onsubmit="addUser(); return false;">
+            <label for="username">اسم المستخدم</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="sessionDuration">مدة الجلسة (دقائق)</label>
+            <input type="number" id="sessionDuration" name="sessionDuration" required>
+
+            <label for="locations">رابط الموقع (ويمكن إضافة أكثر من موقع)</label>
+            <input type="text" id="locations" name="locations" required placeholder="مثال: https://maps.app.goo.gl/XYZ">
+
+            <label for="radius">المسافة المسموح بها (متر)</label>
+            <input type="number" id="radius" name="radius" required placeholder="المسافة بالمتر">
+
+            <button type="submit">إضافة مستخدم</button>
+        </form>
+
+        <h2>قائمة المستخدمين</h2>
+        <ul id="userList"></ul>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
