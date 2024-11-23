@@ -9,21 +9,8 @@
 <body>
     <div class="background">
         <div class="content">
-            <h1>شركة فينش لمكافحة الحشرات</h1>
-            <p>صفحة تسجيل دخول مهندسي مكافحة الحشرات</p>
-
-            <div class="marquee">خدماتنا متوفرة لجميع العملاء في الإسكندرية وشبرا الخيمة</div>
-
-            <div id="locationMessage">
-                <h2>الرجاء السماح بتحديد موقعك للدخول</h2>
-            </div>
-
-            <!-- رسالة الترحيب الخاصة بالمستخدم -->
-            <div id="welcomeMessage" style="display:none; font-size: 18px; color: green; margin-top: 20px;"></div>
-
-            <!-- نموذج تسجيل الدخول -->
-            <div id="loginForm" style="display:none;">
-                <h2>تسجيل الدخول</h2>
+            <div id="loginForm">
+                <h1>تسجيل الدخول</h1>
                 <form onsubmit="return validateLogin()">
                     <label for="username">اسم المستخدم</label>
                     <input type="text" id="username" name="username" required>
@@ -33,9 +20,17 @@
                 </form>
             </div>
 
-            <!-- النموذج داخل iframe -->
-            <div id="formContainer" style="display:none;">
-                <iframe id="googleForm" src="" width="100%" height="600px" frameborder="0"></iframe>
+            <div id="welcomeMessage" style="display:none; text-align:center; font-size: 20px; color: green;">
+                <p></p>
+                <div id="userLocations"></div>
+                <div id="formContainer" style="display:none;">
+                    <h2>نموذج العمل</h2>
+                    <iframe id="googleForm" width="100%" height="600px" frameborder="0"></iframe>
+                </div>
+            </div>
+
+            <div id="locationMessage" style="display:none; text-align:center; font-size: 18px; color: red;">
+                <p>أنت لست في موقع العمل المحدد. برجاء التواجد في الموقع المخصص للعمل.</p>
             </div>
         </div>
     </div>
